@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bundle install --jobs 8
+bundle install
 
 rm -rf tmp/cache*
 
