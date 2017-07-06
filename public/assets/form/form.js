@@ -375,7 +375,7 @@ $(function() {
       }
       $form.append(item)
     })
-    $form.append('<button type="submit" class="btn">' + this.options.messageSubmit + '</button')
+    $form.append('<button type="submit" class="btn">' + this.options.messageSubmit + '</button>')
 
     this.$modal = $element
     this.$form  = $form
