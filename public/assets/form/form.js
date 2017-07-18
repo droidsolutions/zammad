@@ -67,6 +67,9 @@ $(function() {
     messageThankYou: 'Thank you for your inquiry! We\'ll contact you as soon as possible.',
     messageNoConfig: 'Unable to load form config from server. Maybe feature is disabled.',
     attachmentSupport: false,
+    overrides: {
+      render: null // do not override render function of Plugin
+    }
     attributes: [
       {
         display: 'Name',
@@ -341,6 +344,10 @@ $(function() {
 
   // render form
   Plugin.prototype.render = function(e) {
+    // call user defined render function instead of generic renderer
+    if (this._options.override && this._options.override.render && typeof this._options.override.render === 'function')
+      return this._options.override.render.call(this, e);
+
     var _this = this
     _this.closeModal()
     _this.modalOpenTime = new Date()
