@@ -69,7 +69,7 @@ $(function() {
     attachmentSupport: false,
     overrides: {
       render: null // do not override render function of Plugin
-    }
+    },
     attributes: [
       {
         display: 'Name',
@@ -345,8 +345,8 @@ $(function() {
   // render form
   Plugin.prototype.render = function(e) {
     // call user defined render function instead of generic renderer
-    if (this._options.override && this._options.override.render && typeof this._options.override.render === 'function')
-      return this._options.override.render.call(this, e);
+    if (this.options.override && this.options.override.render && typeof this.options.override.render === 'function')
+      return this.options.override.render.call(this, e);
 
     var _this = this
     _this.closeModal()
