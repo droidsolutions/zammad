@@ -259,6 +259,11 @@ $(function() {
 
   // send
   Plugin.prototype.submit = function() {
+
+    // call user defined function
+    if (this.options.override && this.options.override.submit && typeof this.options.override.submit === 'function')
+      return this.options.override.submit.call(this);
+
     var _this = this
 
     // check min modal open time
@@ -312,6 +317,11 @@ $(function() {
 
   // get params
   Plugin.prototype.getParams = function() {
+
+    // call user defined function
+    if (this.options.override && this.options.override.getParams && typeof this.options.override.getParams === 'function')
+	  return this.options.override.getParams.call(this);
+
     var _this = this
 
     var formData = new FormData(_this.$form[0])
@@ -337,6 +347,9 @@ $(function() {
   }
 
   Plugin.prototype.closeModal = function() {
+    // call user defined thanks render function instead of generic renderer
+    if (this.options.override && this.options.override.closeModal && typeof this.options.override.closeModal === 'function')
+        return this.options.override.closeModal.call(this);
     if (this.$modal) {
       this.$modal.remove()
     }
@@ -415,6 +428,10 @@ $(function() {
 
   // thanks
   Plugin.prototype.thanks = function(data) {
+    // call user defined thanks render function instead of generic renderer
+    if (this.options.override && this.options.override.thanks && typeof this.options.override.thanks === 'function')
+        return this.options.override.thanks.call(this, data);
+
     var thankYou = this.options.messageThankYou
     if (data.ticket && data.ticket.number) {
       thankYou = thankYou.replace('%s', data.ticket.number)
@@ -425,6 +442,10 @@ $(function() {
 
   // unable to load config
   Plugin.prototype.noConfig = function(e) {
+    // call user defined function
+    if (this.options.override && this.options.override.noConfig && typeof this.options.override.noConfig === 'function')
+      return this.options.override.noConfig.call(this, e);
+
     var message = $('<div class="js-noConfig">' + this.options.messageNoConfig + '</div>')
     if (this.$form) {
       this.$form.html(message)
