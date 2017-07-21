@@ -106,10 +106,12 @@ class FormController < ApplicationController
         group = Group.first
       end
     end
+
     ticket = Ticket.create!(
       group_id: group.id,
       customer_id: customer.id,
       title: params[:title],
+      type: params[:type],
       preferences: {
         form: {
           remote_ip: request.remote_ip,
